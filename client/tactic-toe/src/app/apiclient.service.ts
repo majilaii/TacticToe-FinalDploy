@@ -20,18 +20,21 @@ export class APIClientService {
 
   getAiMove(board: string, id:number) {
     return this.api.post<string>(`api/ai/move`, JSON.stringify({board, id}), {
+      withCredentials: true,
       headers: {'Content-Type': 'application/json'}
     })
   }
 
   getRandomMove(board: string) {
     return this.api.post<string>(`api/ai/randommove`, JSON.stringify({board}), {
+      withCredentials: true,
       headers: {'Content-Type': 'application/json'}
     })
   }
 
   getPerfectMove(board: string, toPlay: 'X' | 'O') {
     return this.api.post<string>(`api/ai/perfectmove`, JSON.stringify({board, toPlay}), {
+      withCredentials: true,
       headers: {'Content-Type': 'application/json'}
     })
   }
@@ -44,6 +47,7 @@ export class APIClientService {
       },
       id
     }), {
+      withCredentials: true,
       headers: {'Content-Type': 'application/json'}
     })
   }
