@@ -19,7 +19,7 @@ export class SocketioService {
   opponent = 'Bruce';
 
   setupSocketConnection() {
-    this.socket = io('http://localhost:3000', {
+    this.socket = io('https://tacticsmellytoes.fly.dev', {
       withCredentials: true,
       });
     this.socket.on('message', (msg:string) => {

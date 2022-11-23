@@ -14,9 +14,11 @@ export class AuthService {
 
   public isLoggedIn = false;
 
+  //does is authenticated url need a /  in front? no idea
+
   isAuthenticated(){
     let result = false;
-    return this.http.get('/api/loggedin', {withCredentials: true}).pipe(
+    return this.http.get('https://tacticsmellytoes.fly.dev/loggedin', {withCredentials: true}).pipe(
       map(() => {
         this.isLoggedIn = true;
         return true;
@@ -31,11 +33,11 @@ export class AuthService {
 
   validate(email:string, password:string) {
     // {'statusCode': 200, 'message':'logged in', 'user':req.user}
-    return this.http.post<dataResponse>('/api/login', {'username': email, 'password': password}, {withCredentials: true});
+    return this.http.post<dataResponse>('https://tacticsmellytoes.fly.dev/login', {'username': email, 'password': password}, {withCredentials: true});
   }
 
   register(email:string, firstName:string, lastName:string, password:string) {
-    return this.http.post<response>('/api/register', {email, firstName, lastName, password});
+    return this.http.post<response>('https://tacticsmellytoes.fly.dev/register', {email, firstName, lastName, password});
   }
 
   logout() {
@@ -43,7 +45,7 @@ export class AuthService {
     this.setUserInfo({});
     this.socket.clearSearchArray()
     this.socket.searching = false
-    return this.http.delete<response>('/api/logout', {withCredentials: true});
+    return this.http.delete<response>('https://tacticsmellytoes.fly.dev/logout', {withCredentials: true});
   }
 
 }

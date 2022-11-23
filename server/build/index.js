@@ -37,7 +37,14 @@ const io = require('socket.io')(http, {
     cors: {
         origin: process.env.CLIENTURL || "http://localhost:4200",
         methods: ["GET", "POST"],
-        credentials: true
+        credentials: true,
+        proxy: true,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24,
+            secure: true,
+            httpOnly: false,
+            sameSite: 'none'
+        }
     }
 });
 require('./utils/socket')(io);

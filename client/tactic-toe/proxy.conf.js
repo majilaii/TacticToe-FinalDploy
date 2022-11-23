@@ -1,6 +1,6 @@
 const PROXY_CONFIG = {
   "/api": {
-      "target": "http://localhost:3000",
+      "target": "https://tacticsmellytoes.fly.dev",
       "changeOrigin": true,
       "secure": false,
       "logLevel": "debug",

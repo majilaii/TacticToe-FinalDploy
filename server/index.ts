@@ -38,7 +38,14 @@ const io = require('socket.io')(http, {
   cors: {
     origin: process.env.CLIENTURL || "http://localhost:4200", // TODO: .env
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
+    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24,
+    secure: true, // required for cookies to work on HTTPS
+    httpOnly: false,
+    sameSite: 'none'
+  }
   }
 });
 require('./utils/socket')(io);
